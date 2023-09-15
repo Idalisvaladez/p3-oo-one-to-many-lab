@@ -41,9 +41,11 @@ class Owner:
         return [pet for pet in Pet.all if pet.owner == self] #returns the pet if the owner is self
     
     def add_pet(self, pet): #method to add pet
-        if not isinstance(pet, Pet):  #checks if pet is not an instance of Pet class
+        if isinstance(pet, Pet): #checks if pet is an instance of Pet
+            pet.owner = self   #if it is then sets the owner to self
+        else:
             raise Exception("Input is not a valid Pet type") #raise exceptiong if not
-        pet.owner = self #if it is then sets the owner to self
+       
     
     def get_sorted_pets(self): # method to return list of pets sorted by name
         return sorted(self.pets(), key=lambda pet: pet.name)
